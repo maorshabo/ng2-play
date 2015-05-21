@@ -1,18 +1,25 @@
-import {ComponentAnnotation as Component, ViewAnnotation as View, bootstrap, NgIf} from 'angular2/angular2';
+import {Component, View, bootstrap, For} from 'angular2/angular2';
 
 @Component({
-    selector: 'hello'
+    selector: 'hello'  //TODO: default to camel-cased class name if not provided?
 })
 @View({
-    template: `<span *ng-if="name">Hello, {{name}}!</span>`,
-    directives: [NgIf]
+    templateUrl: `helloTemplate.html`,
+directives: [For]
 })
 export class Hello {
-    name: string = 'World';
+    items: Array<string>;
     constructor() {
-        setTimeout(() => {
-          this.name = 'NEW World'
-        }, 2000);
+        this.items = [];
+    }
+    addItem(item: int) {
+        this.items.push(item);
+    }
+    doneTyping($event) {
+        if($event.which === 13) {
+            this.addItem($event.target.value);
+            $event.target.value = null;
+        }
     }
 }
 

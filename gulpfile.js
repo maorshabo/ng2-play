@@ -28,6 +28,7 @@ gulp.task('js', function () {
         .pipe(rename({extname: ''})) //hack, see: https://github.com/sindresorhus/gulp-traceur/issues/54
         .pipe(plumber())
         .pipe(traceur({
+            sourceMaps: true,
             modules: 'instantiate',
             moduleName: true,
             annotations: true,
@@ -35,6 +36,7 @@ gulp.task('js', function () {
             memberVariables: true
         }))
         .pipe(rename({extname: '.js'})) //hack, see: https://github.com/sindresorhus/gulp-traceur/issues/54
+        .pipe(sourcemaps.write('.'))
         .pipe(gulp.dest('dist'));
 });
 

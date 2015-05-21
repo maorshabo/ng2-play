@@ -1,0 +1,8 @@
+<ul>
+    <li *for="#item of items">
+        {{ item }}
+    </li>
+</ul>
+<input #myname (keyup)="doneTyping($event)">
+<button (click)="addItem(myname.value)">Add Item</button>
+<p>{{myname.value}}</p>
